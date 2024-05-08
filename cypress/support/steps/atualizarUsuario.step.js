@@ -35,21 +35,22 @@ Before({ tags: "@CriarUsuario" }, () => {
 });
 
 Given(
-  "que possuo um usuario cadastrado e acessei funcionalidade de buscar usuarios",
+  "que acessei a função de ver detalhes de um usuario cadastrado",
   function () {
     cy.visit("/users");
+    cy.get("@usuarioCadastrado").then(function (usuario) {
+      paginaAtualizarUsuario.typeBuscar(usuario.body.name);
+      paginaAtualizarUsuario.clickButtonVerDetalhes();
+    });
   }
 );
 
-Given("encontrei o usuario e selecionei a função de ver detalhes", function () {
-  cy.get("@usuarioCadastrado").then(function (usuario) {
-    paginaAtualizarUsuario.typeBuscar(usuario.body.name);
-    paginaAtualizarUsuario.clickButtonVerDetalhes();
-  });
+Given("acessei a função editar", function () {
+  paginaAtualizarUsuario.clickButtonEditar();
 });
 
-Given("selecionei a função editar", function () {
-  paginaAtualizarUsuario.clickButtonEditar();
+When("buscar por este usuário com um id invalido", function () {
+  cy.visit("/users/8aa7a124-19a3-4a85-a1a1-0a5b4c387863");
 });
 
 When(
@@ -146,10 +147,6 @@ When("limpar o campo email", function () {
   cy.get(paginaAtualizarUsuario.detalheEmail).clear();
 });
 
-When("buscar pelo usuario {string} e nao encontrá-lo", function (nomeInvalido) {
-  paginaAtualizarUsuario.typeBuscar(nomeInvalido);
-});
-
 Then(
   "o sistema retorna o alerta de informações atualizadas com sucesso",
   function () {
@@ -184,24 +181,6 @@ Then(
 );
 
 Then(
-  "o sistema retorna a mensagem: não existem usuarios para serem exibidos, cadastre um novo usuário",
-  function () {
-    cy.get(paginaAtualizarUsuario.headerUsuarioNaoEncontrado).should(
-      "be.visible"
-    );
-    cy.get(paginaAtualizarUsuario.headerUsuarioNaoEncontrado).should(
-      "contain.text",
-      "Ops! Não existe nenhum usuário para ser exibido."
-    );
-    cy.get(paginaAtualizarUsuario.headerCadastrarUsuario).should("be.visible");
-    cy.get(paginaAtualizarUsuario.headerCadastrarUsuario).should(
-      "contain.text",
-      "Cadastre um novo usuário"
-    );
-  }
-);
-
-Then(
   "o sistema retorna o alerta este e-mail já é utilizado por outro usuário",
   function () {
     cy.get(paginaAtualizarUsuario.headerErro).should("be.visible");
@@ -211,7 +190,7 @@ Then(
       "contain.text",
       "Este e-mail já é utilizado por outro usuário."
     );
-    cy.get(paginaAtualizarUsuario.headerCancelar).should("be.visible");
+    cy.get(paginaAtualizarUsuario.buttonCancelar).should("be.visible");
   }
 );
 
@@ -266,6 +245,26 @@ Then(
     cy.get(paginaAtualizarUsuario.formatoEmailInvalido).should(
       "contain.text",
       "O campo e-mail é obrigatório."
+    );
+  }
+);
+
+Then(
+  "o sistema exibe a mensagem de usuário não encontrado, informando que não foi possível localizar o usuário",
+  function () {
+    cy.get(paginaAtualizarUsuario.headerUsuarioNaoEncontrado).should(
+      "be.visible"
+    );
+    cy.get(paginaAtualizarUsuario.headerUsuarioNaoEncontrado).should(
+      "contain.text",
+      "Usuário não encontrado"
+    );
+    cy.get(paginaAtualizarUsuario.headerUsuarioNaoLocalizado).should(
+      "be.visible"
+    );
+    cy.get(paginaAtualizarUsuario.headerUsuarioNaoLocalizado).should(
+      "contain.text",
+      "Não foi possível localizar o usuário."
     );
   }
 );

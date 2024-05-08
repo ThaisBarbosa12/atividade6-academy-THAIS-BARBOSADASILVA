@@ -13,8 +13,9 @@ export default class AtualizarUsuarioPage {
 
   headerErro = "h2";
   headerEmailEmUso = "p";
-  headerCancelar = ".sc-lcIPJg";
-  headerUsuarioNaoEncontrado = "h3";
+  buttonCancelar = ".sc-lcIPJg";
+  headerUsuarioNaoEncontrado = "h2";
+  headerUsuarioNaoLocalizado = "p";
   headerCadastrarUsuario = "p";
 
   alertaUsuarioAtualizado = ".go3958317564";
