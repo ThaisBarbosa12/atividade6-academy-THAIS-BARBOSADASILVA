@@ -17,6 +17,12 @@ Funcionalidade: Criação de usuario
   E salvar a operação
   Então o sistema retorna a mensagem de erro informando que o formato de e-mail é invalido
 
+ Cenario: Não deve ser possível criar um usuario com formato de nome invalido
+  Quando informar o nome
+  E informar o nome invalido "12Thais5"
+  E salvar a operação
+  Então o sistema retorna a mensagem de erro informando que o formato de nome é invalido 
+
 @usuarioExistente
  Cenario: Não deve ser possível criar um usuario com e-mail já utilizado por outro usuário
   Quando informar o nome
@@ -24,14 +30,24 @@ Funcionalidade: Criação de usuario
   E salvar a operação
   Então o sistema retorna o alerta este e-mail já é utilizado por outro usuário
 
+ Cenario: Deve ser possível cadastar um nome com 100 caracteres
+  Quando informar um nome com 100 caracteres "thaisbarbosadasilvathaisbarbosadasilvathaisbarbosadasilvathaisbarbosadasilvathaisbarbosadasilvabarbo"
+  E informar o e-mail
+  E salvar a operação
+  Então o sistema retorna o alerta de usuário salvo com sucesso
 
- Cenario: Não deve ser possível cadastar um nome com mais de 100 caracteres.
+ Cenario: Não deve ser possível cadastar um nome com mais de 100 caracteres
   Quando informar um nome com mais de 100 caracteres "thaisbarbosadasilvathaisbarbosadasilvathaisbarbosadasilvathaisbarbosadasilvathaisbarbosadasilvabarbos"
   E informar o e-mail
   E salvar a operação
   Então o sistema não permite concluir o cadastro ao extrapolar o limite de 100 caracteres no campo nome
   E retorna a mensagem dizendo que deve ser informado no máximo 100 caracteres para o nome
   
+ Cenario: Deve ser possível cadastar um e-mail com 60 caracteres
+  Quando informar o nome 
+  E informar o e-mail com 60 caracteres
+  E salvar a operação
+  Então o sistema retorna o alerta de usuário salvo com sucesso
 
  Cenario: Não deve ser possível cadastar um e-mail com mais de 60 caracteres.
   Quando informar o nome 
@@ -40,6 +56,11 @@ Funcionalidade: Criação de usuario
   Então o sistema não permite concluir o cadastro ao extrapolar o limite de 60 caracteres no campo e-mail
   E retorna a mensagem dizendo que deve ser informado no máximo 60 caracteres para o email
 
+ Cenario: Deve ser possível cadastrar um usuário com nome que contenha 4 letras
+  Quando informar o nome com menos de 4 letras "TATA"
+  E informar o e-mail
+  E salvar a operação
+  Então o sistema retorna o alerta de usuário salvo com sucesso
 
  Cenario: Não deve ser possível cadastrar um usuário com nome que contenha menos de 4 letras
   Quando informar o nome com menos de 4 letras "BIA"

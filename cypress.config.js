@@ -12,7 +12,7 @@ module.exports = defineConfig({
     baseUrl: "https://rarocrud-frontend-88984f6e4454.herokuapp.com",
     apiBaseUrl: "https://rarocrud-80bf38b38f1f.herokuapp.com/api-docs/",
     TAGS: "not @ignore",
-    TAGS: "@test or @usuarioExistente",
+    TAGS: "@test or @usuarioExistente or @EmailEmUso",
     TAGS: "@lista6Usuarios or @listaVazia or @lista4Paginas or @CriarUsuario",
     specPattern: "cypress/e2e/**/*.feature",
     async setupNodeEvents(on, config) {

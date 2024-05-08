@@ -5,6 +5,13 @@ export default class CriarUsuarioPage {
 
   linkVoltar = '[href="/users/novo"]';
 
+  alertaUsuarioCriado = ".go3958317564";
+  erroEmail = ".sc-cPiKLX";
+  erroNome = ".sc-cPiKLX";
+  alertaErro = "h2";
+  alertaEmailEmUso = "p";
+  buttonCancelarErro = ".sc-lcIPJg";
+
   typeNome(nome) {
     cy.get(this.inputNome).type(nome);
   }

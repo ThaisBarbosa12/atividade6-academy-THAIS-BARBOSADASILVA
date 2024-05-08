@@ -3,7 +3,7 @@ export default class AtualizarUsuarioPage {
   listaUsuarios = "#listaUsuarios";
   listaComTodosUsuarios = "#listaUsuarios #userData";
 
-  buttonVerDetalhes = ".sc-feUZmu > #userDataDetalhe";
+  buttonVerDetalhes = "#userDataDetalhe";
   buttonEditar = '[type="button"]';
   buttonSalvar = '[type="submit"]';
 
@@ -11,12 +11,15 @@ export default class AtualizarUsuarioPage {
   detalheNome = "#userName";
   detalheEmail = "#userEmail";
 
+  headerErro = "h2";
+  headerEmailEmUso = "p";
+  headerCancelar = ".sc-lcIPJg";
   headerUsuarioNaoEncontrado = "h3";
   headerCadastrarUsuario = "p";
 
   alertaUsuarioAtualizado = ".go3958317564";
-  formatoNomeInvalido = ".sc-cPiKLX feFrSQ";
-  formatoEmailInvalido = ".sc-cPiKLX feFrSQ";
+  formatoNomeInvalido = ".sc-cPiKLX";
+  formatoEmailInvalido = ".sc-cPiKLX";
 
   typeAtualizarNome(nome) {
     cy.get(this.detalheNome).type(nome);
